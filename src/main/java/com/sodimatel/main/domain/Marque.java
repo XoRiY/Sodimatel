@@ -14,6 +14,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.sodimatel.main.domain.enumerated.EtatMarque;
 
@@ -37,6 +39,8 @@ public class Marque implements Serializable {
 	private Long idMarque;
 
 	@Column(name = "LIBELLE", unique = true, nullable = false, length = 50)
+	@Size(min = 2, max = 50, message = "la taille doit être comprise entre {min} et  {max}")
+	@NotNull
 	private String marque;
 
 	@Column(name = "ETAT", nullable = false, length = 10)
