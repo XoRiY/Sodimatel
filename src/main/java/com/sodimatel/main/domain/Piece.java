@@ -55,7 +55,7 @@ public class Piece implements Serializable {
 	private Categorie categorie;
 
 	@Column(name = "REFERENCE_PIECE", unique = true, nullable = false, length = 20)
-	@Size(min = 12, max = 20, message = "la taille doit �tre comprise entre {min} et  {max}")
+	@Size(min = 12, max = 20, message = "la taille doit être comprise entre {min} et  {max}")
 	@NotNull
 	private String reference;
 
