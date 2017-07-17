@@ -20,9 +20,7 @@ import javax.validation.constraints.Size;
 @NamedQueries(value = { @NamedQuery(name = "Categorie.getAll", query = "select c from Categorie c"),
 		@NamedQuery(name = "Categorie.getByID", query = "select c from Categorie c where c.idCategorie =:id"),
 		@NamedQuery(name = "Categorie.getByLibelle", query = "select c from Categorie c where c.libelle =:libelle"),
-		// @NamedQuery(
-		// name="Categorie.update", query="UPDATE Categorie c SET
-		// c.libelle=:newCategorie where c.libelle=:oldCategorie"),
+		@NamedQuery(name="Categorie.update", query="UPDATE Categorie c SET c.libelle=:newCategorie where c.libelle=:oldCategorie"),
 		@NamedQuery(name = "Categorie.delete", query = "delete from Categorie c where c.libelle =:libelle") })
 public class Categorie implements Serializable {
 	/**
@@ -36,10 +34,9 @@ public class Categorie implements Serializable {
 	private Long idCategorie;
 
 	@Column(name = "LIBELLE", nullable = false, unique = true, length = 50)
-	@Size(min = 2, max = 50, message = "la taille doit �tre comprise entre {min} et  {max}")
+	@Size(min = 2, max = 50, message = "la taille doit être comprise entre {min} et  {max}")
 	@NotNull
 	private String libelle;
-
 
 	public Categorie() {
 	}
