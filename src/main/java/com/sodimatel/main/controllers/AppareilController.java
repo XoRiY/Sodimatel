@@ -29,8 +29,8 @@ public class AppareilController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value="/appareils")
-	public void ajouterAppareil(@RequestBody Appareil Appareil){
-		serviceImp.insertAppareil(Appareil);
+	public void ajouterAppareil(@RequestBody Appareil appareil){
+		serviceImp.insertAppareil(appareil);
 	}
 	
 	
