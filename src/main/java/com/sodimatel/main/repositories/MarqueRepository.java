@@ -6,5 +6,6 @@ import com.sodimatel.main.domain.Marque;
 
 public interface MarqueRepository extends JpaRepository<Marque, Long>{
 
+	Marque findByMarque(String marque);
 	
 }
