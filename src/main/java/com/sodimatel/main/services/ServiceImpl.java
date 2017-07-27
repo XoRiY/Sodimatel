@@ -2,6 +2,7 @@ package com.sodimatel.main.services;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,10 +30,10 @@ public class ServiceImpl implements ServicesRepository, Serializable{
 //
 	@Autowired
 	private AppareilRepositoryImpl appareilRepositoryImpl;
-//
-//	@Autowired
-//	private CategorieRepositoryImpl categorieRepository;
-//
+
+	@Autowired
+	private CategorieRepositoryImpl categorieRepository;
+
 //	@Autowired
 //	private ClientRepositoryImpl clientRepository;
 //
@@ -42,8 +43,8 @@ public class ServiceImpl implements ServicesRepository, Serializable{
 //	@Autowired
 //	private DocumentRepositoryImpl documentRepository;
 //
-//	@Autowired
-//	private PieceRepositoryImpl pieceRepository;
+	@Autowired
+	private PieceRepositoryImpl pieceRepository;
 
 	@Autowired
 	private TypeRepositoryImpl typeRepositoryImpl;
@@ -203,7 +204,7 @@ public class ServiceImpl implements ServicesRepository, Serializable{
 	@Override
 	public List<Appareil> getAppareilBy(Marque marque, Type type) {
 		List<Appareil> appareils;
-		appareils = appareilRepositoryImpl.getBy(marque, type);
+		appareils = appareilRepositoryImpl.getAppareilBy(marque, type);
 		return appareils;
 	}
 
@@ -266,55 +267,55 @@ public class ServiceImpl implements ServicesRepository, Serializable{
 //		return appareils;
 //	}
 //
-//	/****************************************************/
-//	/******************* Categorie **********************/
-//	/****************************************************/
-//
-//	@Override
-//	// @Interceptors(ValidationInsertInterceptor.class)
-//	public Categorie insertCategorie(Categorie categorie) {
-//		return categorieRepository.insert(categorie);
-//
-//	}
-//
-//	@Override
-//	public List<Categorie> getAllCategorie() {
-//		List<Categorie> categories;
-//		categories = categorieRepository.getAllCategorie();
-//		return categories;
-//	}
-//
-//	@Override
-//	public void deleteCategorie(Categorie categorie) {
-//		
-//		 categorieRepository.delete(categorie);
-//		
-//	}
-//
-//	@Override
-//	// @Interceptors(ValidationParametersInterceptor.class)
-//	public Categorie getCategorieBy(String libelle) {
-//		Categorie categorie;
-//		categorie = categorieRepository.getBy(libelle);
-//		return categorie;
-//	}
-//
-//	@Override
-//	// @Interceptors(ValidationParametersInterceptor.class)
-//	public void updateCategorie(Categorie categorie) {
-//
-//		categorieRepository.update(categorie);
-//		
-//	}
-//
-//	@Override
-//	// @Interceptors(ValidationParametersInterceptor.class)
-//	public Categorie getCategorieBy(Long idCategorie) {
-//		Categorie categorie;
-//		categorie = categorieRepository.getBy(idCategorie);
-//		return categorie;
-//	}
-//
+	/****************************************************/
+	/******************* Categorie **********************/
+	/****************************************************/
+
+	@Override
+	// @Interceptors(ValidationInsertInterceptor.class)
+	public Categorie insertCategorie(Categorie categorie) {
+		return categorieRepository.insert(categorie);
+
+	}
+
+	@Override
+	public List<Categorie> getAllCategorie() {
+		List<Categorie> categories;
+		categories = categorieRepository.getAllCategorie();
+		return categories;
+	}
+
+	@Override
+	public void deleteCategorie(Categorie categorie) {
+		
+		 categorieRepository.delete(categorie);
+		
+	}
+
+	@Override
+	// @Interceptors(ValidationParametersInterceptor.class)
+	public Categorie getCategorieBy(String libelle) {
+		Categorie categorie;
+		categorie = categorieRepository.getBy(libelle);
+		return categorie;
+	}
+
+	@Override
+	// @Interceptors(ValidationParametersInterceptor.class)
+	public void updateCategorie(Categorie categorie) {
+
+		categorieRepository.update(categorie);
+		
+	}
+
+	@Override
+	//@Interceptors(ValidationParametersInterceptor.class)
+	public Categorie getCategorieBy(Long idCategorie) {
+		Categorie categorie;
+		categorie = categorieRepository.getBy(idCategorie);
+		return categorie;
+	}
+
 //	/****************************************************/
 //	/******************* Client ***********************/
 //	/****************************************************/
@@ -514,131 +515,131 @@ public class ServiceImpl implements ServicesRepository, Serializable{
 		marquesStrings = marqueRepositoryImpl.searchMarque(name);
 		return marquesStrings;
 	}
-//
-//	/****************************************************/
-//	/******************** Piece *************************/
-//	/****************************************************/
-//
-//	@Override
-//	// @Interceptors(ValidationInsertInterceptor.class)
-//	public Piece insertPiece(Piece piece) {
-//		Piece piecePersist;
-//		piecePersist = pieceRepository.insert(piece);
-//		return piecePersist;
-//	}
-//
-//	@Override
-//	public List<Piece> getAllPiecesBy(Appareil appareil, Categorie categorie) {
-//		List<Piece> pieces;
-//		pieces = pieceRepository.getAllBy(appareil, categorie);
-//		return pieces;
-//	}
-//
-//	@Override
-//	public List<Piece> getPiecesOriginesBy(Appareil appareil, Categorie categorie) {
-//		List<Piece> pieces;
-//		pieces = pieceRepository.getOriginesBy(appareil, categorie);
-//		return pieces;
-//	}
-//
-//	@Override
-//	public List<Piece> getPiecesEquivalentesBy(Appareil appareil, Categorie categorie) {
-//		List<Piece> pieces;
-//		pieces = pieceRepository.getEquivalentesBy(appareil, categorie);
-//		return pieces;
-//	}
-//
-//	@Override
-//	public List<Piece> getPiecesOriginesBy(Categorie categorie) {
-//		List<Piece> pieces;
-//		pieces = pieceRepository.getOriginesBy(categorie);
-//		return pieces;
-//
-//	}
-//
-//	@Override
-//	public List<Piece> getPiecesOriginesBy(Appareil appareil) {
-//		List<Piece> pieces;
-//		pieces = pieceRepository.getOriginesBy(appareil);
-//		return pieces;
-//	}
-//
-//	@Override
-//	public List<Piece> getPiecesEquivalentesBy(Categorie categorie) {
-//		List<Piece> pieces;
-//		pieces = pieceRepository.getEquivalentesBy(categorie);
-//		return pieces;
-//	}
-//
-//	@Override
-//	public List<Piece> getPiecesEquivalentesBy(Appareil appareil) {
-//		List<Piece> pieces;
-//		pieces = pieceRepository.getEquivalentesBy(appareil);
-//		return pieces;
-//	}
-//
-//	@Override
-//	public List<Piece> getAllPiecesBy(Appareil appareil) {
-//		List<Piece> pieces;
-//		pieces = pieceRepository.getAllBy(appareil);
-//		return pieces;
-//	}
-//
-//	@Override
-//	public List<Piece> getAllPiecesBy(Categorie categorie) {
-//		List<Piece> pieces;
-//		pieces = pieceRepository.getAllBy(categorie);
-//		return pieces;
-//	}
-//
-//	@Override
-//	public List<Piece> getAllPieces() {
-//		List<Piece> pieces;
-//		pieces = pieceRepository.getAll();
-//		return pieces;
-//	}
-//
-//	@Override
-//	public List<Piece> getPiecesEquivalentesBy(Piece pieceOrigine) {
-//		List<Piece> pieces;
-//		pieces = pieceRepository.getEquivalentesBy(pieceOrigine);
-//		return pieces;
-//	}
-//
-//	@Override
-//	public void associePieceAppareil(Piece piOrigine, Appareil appareil) {
-//		pieceRepository.associe(piOrigine, appareil);
-//	}
-//
-//	@Override
-//	// @Interceptors(ValidationParametersInterceptor.class)
-//	public Piece getPieceById(Long id_piece) {
-//		Piece piece;
-//		piece = pieceRepository.getPieceById(id_piece);
-//		return piece;
-//	}
-//
-//	@Override
-//	// @Interceptors(ValidationParametersInterceptor.class)
-//	public Piece getPieceBy(String ref_piece) {
-//		Piece piece;
-//		piece = pieceRepository.getPieceBy(ref_piece);
-//		return piece;
-//	}
-//
-//	@Override
-//	public void deletePiece(Piece pi) {
-//
-//		pieceRepository.delete(pi);
-//
-//	}
-//
-//	@Override
-//	public void updatePiece(Piece newPiece) {
-//
-//		pieceRepository.update(newPiece);
-//
-//	}
+
+	/****************************************************/
+	/******************** Piece *************************/
+	/****************************************************/
+
+	@Override
+	// @Interceptors(ValidationInsertInterceptor.class)
+	public Piece insertPiece(Piece piece) {
+		Piece piecePersist;
+		piecePersist = pieceRepository.insert(piece);
+		return piecePersist;
+	}
+
+	@Override
+	public Set<Piece> getAllPiecesBy(Appareil appareil, Categorie categorie) {
+		
+		
+		return pieceRepository.getAllBy(appareil, categorie);	
+	}
+
+	@Override
+	public List<Piece> getPiecesOriginesBy(Appareil appareil, Categorie categorie) {
+		List<Piece> pieces;
+		pieces = pieceRepository.getOriginesBy(appareil, categorie);
+		return pieces;
+	}
+
+	@Override
+	public List<Piece> getPiecesEquivalentesBy(Appareil appareil, Categorie categorie) {
+
+		return pieceRepository.getEquivalentesBy(appareil, categorie);
+	
+	}
+
+	@Override
+	public List<Piece> getPiecesOriginesBy(Categorie categorie) {
+		List<Piece> pieces;
+		pieces = pieceRepository.getOriginesBy(categorie);
+		return pieces;
+
+	}
+
+	@Override
+	public List<Piece> getPiecesOriginesBy(Appareil appareil) {
+		List<Piece> pieces;
+		pieces = pieceRepository.getOriginesBy(appareil);
+		return pieces;
+	}
+
+	@Override
+	public List<Piece> getPiecesEquivalentesBy(Categorie categorie) {
+		List<Piece> pieces;
+		pieces = pieceRepository.getEquivalentesBy(categorie);
+		return pieces;
+	}
+
+	@Override
+	public List<Piece> getPiecesEquivalentesBy(Appareil appareil) {
+		List<Piece> pieces;
+		pieces = pieceRepository.getEquivalentesBy(appareil);
+		return pieces;
+	}
+
+	@Override
+	public List<Piece> getAllPiecesBy(Appareil appareil) {
+		List<Piece> pieces;
+		pieces = pieceRepository.getAllBy(appareil);
+		return pieces;
+	}
+
+	@Override
+	public List<Piece> getAllPiecesBy(Categorie categorie) {
+		List<Piece> pieces;
+		pieces = pieceRepository.getAllBy(categorie);
+		return pieces;
+	}
+
+	@Override
+	public List<Piece> getAllPieces() {
+		List<Piece> pieces;
+		pieces = pieceRepository.getAll();
+		return pieces;
+	}
+
+	@Override
+	public List<Piece> getPiecesEquivalentesBy(Piece pieceOrigine) {
+		List<Piece> pieces;
+		pieces = pieceRepository.getEquivalentesBy(pieceOrigine);
+		return pieces;
+	}
+
+	@Override
+	public void associePieceAppareil(Piece piOrigine, Appareil appareil) {
+		pieceRepository.associe(piOrigine, appareil);
+	}
+
+	@Override
+	// @Interceptors(ValidationParametersInterceptor.class)
+	public Piece getPieceById(Long idPiece) {
+		Piece piece;
+		piece = pieceRepository.getPieceById(idPiece);
+		return piece;
+	}
+
+	@Override
+	// @Interceptors(ValidationParametersInterceptor.class)
+	public Piece getPieceBy(String refPiece) {
+		Piece piece;
+		piece = pieceRepository.getPieceBy(refPiece);
+		return piece;
+	}
+
+	@Override
+	public void deletePiece(Piece piece) {
+
+		pieceRepository.delete(piece);
+
+	}
+
+	@Override
+	public void updatePiece(Piece newPiece) {
+
+		pieceRepository.update(newPiece);
+
+	}
 
 	/****************************************************/
 	/********************* Type *************************/
