@@ -8,4 +8,13 @@ public class SodimatelSpgDataApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SodimatelSpgDataApplication.class, args);
 	}
+	
+	/* todo list*
+	 * 
+	 * 
+	 * 
+	 * 
+	 * */
+	
+	
 }
