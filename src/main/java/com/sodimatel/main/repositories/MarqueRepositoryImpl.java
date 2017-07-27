@@ -12,7 +12,6 @@ import com.sodimatel.main.domain.Marque;
 
 
 @Service
-
 public class MarqueRepositoryImpl {
 
 	@Autowired
@@ -28,11 +27,7 @@ public class MarqueRepositoryImpl {
 	}
 
 	public List<Marque> findAll() {
-
-		List<Marque> marques = em.createNamedQuery("Marque.getAll", Marque.class).getResultList();
-		return marques;
-		
-
+		return marqueRepository.findAll();
 	}
 
 	public int desable(Marque r) {
@@ -49,10 +44,7 @@ public class MarqueRepositoryImpl {
 
 	public Marque getBy(String libelle) {
 
-		Marque m = em.createNamedQuery("Marque.getByMarque", Marque.class).setParameter("libelle", libelle)
-				.getSingleResult();
-
-		return m;
+		return marqueRepository.findByMarque(libelle);
 
 	}
 
@@ -62,26 +54,21 @@ public class MarqueRepositoryImpl {
 	}
 
 	public Marque getMarqueById(Long idMarque) {
-		Marque m ;
-		m = marqueRepository.findOne(idMarque);
-		return m;
+		return marqueRepository.findOne(idMarque);
 	}
 
 	public void delete(Marque marque) {
-
 		marqueRepository.delete(marque);
-
 	}
 
 	public List<String> searchMarque(String marque) {
 		String query = "select m.marque from Marque m where m.marque like :marque";
-		List<String> marqueString;
-		marqueString = em.createQuery(query, String.class).setParameter("marque", marque + "%").getResultList();
-		return marqueString;
+		return em.createQuery(query, String.class).setParameter("marque", marque + "%").getResultList();
 	}
 
 	public void delete(Long idMarque) {
 		marqueRepository.delete(idMarque);
 	}
 
+	
 }
