@@ -10,7 +10,7 @@ public class SodimatelSpgDataApplication {
 	}
 	
 	/* todo list*
-	 * 
+	 * thymeLeaf 
 	 * 
 	 * 
 	 * 
