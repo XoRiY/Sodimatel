@@ -21,6 +21,9 @@ import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.Getter;
+import lombok.Setter;
+
 
 @Entity
 @Table(name = "APPAREILS")
@@ -40,6 +43,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 		@NamedQuery(
 				name = "Appareil.deleteByRef", 
 				query = "delete from Appareil as app where app.referenceAppareil=:referenceAppareil")  })
+@Getter
+@Setter
 public class Appareil implements Serializable {
 
 	/**
@@ -105,57 +110,6 @@ public class Appareil implements Serializable {
 		pieces.remove(piece);		
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-	public Long getIdAppareil() {
-		return idAppareil;
-	}
-
-	public Type getType() {
-		return type;
-	}
-
-	public Marque getMarque() {
-		return marque;
-	}
-
-	public String getReferenceAppareil() {
-		return referenceAppareil;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public Set<Piece> getPieces() {
-		return pieces;
-	}
-
-	public void setIdAppareil(Long idAppareil) {
-		this.idAppareil = idAppareil;
-	}
-
-	public void setType(Type type) {
-		this.type = type;
-	}
-
-	public void setMarque(Marque marque) {
-		this.marque = marque;
-	}
-
-	public void setReferenceAppareil(String referenceAppareil) {
-		this.referenceAppareil = referenceAppareil;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public void setPieces(Set<Piece> pieces) {
-		this.pieces = pieces;
-	}
 
 	@Override
 	public String toString() {
