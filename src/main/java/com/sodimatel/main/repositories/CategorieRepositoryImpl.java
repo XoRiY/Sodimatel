@@ -2,9 +2,6 @@ package com.sodimatel.main.repositories;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.sodimatel.main.domain.Categorie;
@@ -13,17 +10,13 @@ public class CategorieRepositoryImpl  {
 	
 	@Autowired
 	CategorieRepository  categorieRepo;
-	
-	@PersistenceContext
-	EntityManager em;
-	
+		
 	public void update(Categorie categorie) {
 		categorieRepo.save(categorie);
 	}
 
 	public Categorie getBy(String libelle) {
-		return em.createNamedQuery("Categorie.getByLibelle", Categorie.class)
-				.setParameter("libelle", libelle).getSingleResult();
+		return categorieRepo.findByLibelle(libelle);
 	}
 
 	public void delete(Categorie categorie) {
