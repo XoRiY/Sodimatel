@@ -1,6 +1,7 @@
 package com.sodimatel.main.services;
 
 import java.util.List;
+import java.util.Set;
 
 import com.sodimatel.main.domain.*;
 
@@ -44,20 +45,20 @@ public interface ServicesRepository {
 
 //	public abstract List<String> searchAppareil(String reference);
 //
-//	/************ Categorie **************/
-//
-//	public abstract Categorie insertCategorie(Categorie categorie);
-//
-//	public abstract List<Categorie> getAllCategorie();
-//
-//	public abstract void deleteCategorie(Categorie categorie);
-//
-//	public abstract Categorie getCategorieBy(String libelle);
-//
-//	public abstract void updateCategorie(Categorie categorie);
-//
-//	public abstract Categorie getCategorieBy(Long idCategorie);
-//
+	/************ Categorie **************/
+
+	public abstract Categorie insertCategorie(Categorie categorie);
+
+	public abstract List<Categorie> getAllCategorie();
+
+	public abstract void deleteCategorie(Categorie categorie);
+
+	public abstract Categorie getCategorieBy(String libelle);
+
+	public abstract void updateCategorie(Categorie categorie);
+
+	public abstract Categorie getCategorieBy(Long idCategorie);
+
 //	/************ Client **************/
 //
 //	public abstract Client getClientById(Long idClient);
@@ -133,41 +134,41 @@ public interface ServicesRepository {
 
 	//public abstract Set<Marque> getMarquesByType(Type type);
 //
-//	/************ Piece **************/
-//
-//	public abstract Piece insertPiece(Piece piece);
-//
-//	public abstract List<Piece> getAllPiecesBy(Appareil appareil, Categorie categorie);
-//
-//	public abstract List<Piece> getPiecesOriginesBy(Appareil appareil, Categorie categorie);
-//
-//	public abstract List<Piece> getPiecesEquivalentesBy(Appareil appareil, Categorie categorie);
-//
-//	public abstract List<Piece> getPiecesOriginesBy(Categorie categorie);
-//
-//	public abstract List<Piece> getPiecesOriginesBy(Appareil appareil);
-//
-//	public abstract List<Piece> getPiecesEquivalentesBy(Categorie categorie);
-//
-//	public abstract List<Piece> getPiecesEquivalentesBy(Appareil appareil);
-//
-//	public abstract List<Piece> getAllPiecesBy(Appareil appareil);
-//
-//	public abstract List<Piece> getAllPiecesBy(Categorie categorie);
-//
-//	public abstract List<Piece> getAllPieces();
-//
-//	public abstract List<Piece> getPiecesEquivalentesBy(Piece pieceOrigine);
-//
-//	public abstract void associePieceAppareil(Piece piOrigine, Appareil appareil);
-//
-//	public abstract Piece getPieceById(Long idPiece);
-//
-//	public abstract Piece getPieceBy(String referencePiece);
-//
-//	public abstract void deletePiece(Piece pi);
-//
-//	public abstract void updatePiece(Piece newPiece);
+	/************ Piece **************/
+
+	public abstract Piece insertPiece(Piece piece);
+
+	public abstract Set<Piece> getAllPiecesBy(Appareil appareil, Categorie categorie);
+
+	public abstract List<Piece> getPiecesOriginesBy(Appareil appareil, Categorie categorie);
+
+	public abstract List<Piece> getPiecesEquivalentesBy(Appareil appareil, Categorie categorie);
+
+	public abstract List<Piece> getPiecesOriginesBy(Categorie categorie);
+
+	public abstract List<Piece> getPiecesOriginesBy(Appareil appareil);
+
+	public abstract List<Piece> getPiecesEquivalentesBy(Categorie categorie);
+
+	public abstract List<Piece> getPiecesEquivalentesBy(Appareil appareil);
+
+	public abstract List<Piece> getAllPiecesBy(Appareil appareil);
+
+	public abstract List<Piece> getAllPiecesBy(Categorie categorie);
+
+	public abstract List<Piece> getAllPieces();
+
+	public abstract List<Piece> getPiecesEquivalentesBy(Piece pieceOrigine);
+
+	public abstract void associePieceAppareil(Piece piOrigine, Appareil appareil);
+
+	public abstract Piece getPieceById(Long idPiece);
+
+	public abstract Piece getPieceBy(String referencePiece);
+
+	public abstract void deletePiece(Piece pi);
+
+	public abstract void updatePiece(Piece newPiece);
 
 	/************ Type **************/
 
@@ -182,7 +183,8 @@ public interface ServicesRepository {
 	public abstract Type updateType(Type type);
 
 	public abstract void deleteType(Long type);
-	void deleteMarque(Long idMarque);
+	
+	public abstract void deleteMarque(Long idMarque);
 
 //	public abstract List<String> searchType(String name);
 //
