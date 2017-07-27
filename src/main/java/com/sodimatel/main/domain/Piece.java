@@ -26,14 +26,20 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sodimatel.main.domain.enumerated.*;
+
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "PIECES")
 @NamedQueries(value = { @NamedQuery(name = "Piece.getAll", query = "select c from Piece c"),
 		@NamedQuery(name = "Piece.getByRef", query = "select p from Piece p where p.reference=:reference"),
 		@NamedQuery(name = "Piece.getByPiece", query = "select p from Piece p where p=:piece") })
-
+@JsonIgnoreProperties({"appareils", "pieceEquivalentes", "documents", "images"})
+@Getter
+@Setter
 public class Piece implements Serializable {
 
 
@@ -42,14 +48,14 @@ public class Piece implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID_PIECE")	
+	@Column(name = "ID_PIECE")
 	private Long idPiece;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name = "ID_PIECE_ORIGINE", nullable = true)
 	private Piece pieceOrigine;
 
-	@ManyToOne()
+	@ManyToOne
 	@JoinColumn(name = "ID_CATEGORIE", nullable=false)
 	@NotNull
 	private Categorie categorie;
@@ -64,7 +70,7 @@ public class Piece implements Serializable {
 	private String libelle;
 
 	@Column(name = "DESCRIPTION", length = 250)
-	@Size(min=10, max=250, message = "la taille doit �tre comprise entre {min} et  {max}")
+	@Size(min=10, max=250, message = "la taille doit être comprise entre {min} et  {max}")
 	private String description;
 
 	@Column(name = "PRIX", scale = 2)
@@ -74,11 +80,11 @@ public class Piece implements Serializable {
 	private Double prix = 0.0;
 
 	@Column(name = "QUANTITE")
-	@NotNull(message = "Le champ ne peut pas �tre null")
+	@NotNull(message = "Le champ ne peut pas être null")
 	@Min(0)
 	private Integer quantite;
 
-	@OneToMany(mappedBy = "pieceOrigine", fetch = FetchType.EAGER, orphanRemoval = true, cascade = {
+	@OneToMany(mappedBy = "pieceOrigine", fetch = FetchType.LAZY, orphanRemoval = true, cascade = {
 			CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE })
 	private Set<Piece> pieceEquivalentes = new HashSet<>();
 
@@ -97,7 +103,7 @@ public class Piece implements Serializable {
 	@Column(name = "TYPE_PIECE", length = 12, nullable = false)
 	@Enumerated(EnumType.STRING)
 	@NotNull
-	private TypePiece TypePiece;
+	private TypePiece typePiece;
 
 	public Piece() {
 	}
@@ -116,7 +122,6 @@ public class Piece implements Serializable {
 
 	}
 
-	@SuppressWarnings("static-access")
 	@Deprecated
 	public Piece(String ref_Piece, String description, Categorie categorie) {
 
@@ -126,7 +131,7 @@ public class Piece implements Serializable {
 		this.libelle = "La Piece";
 		this.prix = Math.random() * 100;
 		this.quantite = (int) ((Math.random() * 10));
-		this.TypePiece = TypePiece.ORIGINE;
+		this.typePiece = TypePiece.ORIGINE;
 
 	}
 
@@ -174,113 +179,7 @@ public class Piece implements Serializable {
 		image.setPiece(null);
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-	public Long getIdPiece() {
-		return idPiece;
-	}
-
-	public Piece getPieceOrigine() {
-		return pieceOrigine;
-	}
-
-	public Categorie getCategorie() {
-		return categorie;
-	}
-
-	public String getReference() {
-		return reference;
-	}
-
-	public String getLibelle() {
-		return libelle;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public Double getPrix() {
-		return prix;
-	}
-
-	public Integer getQuantite() {
-		return quantite;
-	}
-
-	public Set<Piece> getPieceEquivalentes() {
-		return pieceEquivalentes;
-	}
-
-	public Set<Document> getDocuments() {
-		return documents;
-	}
-
-	public Set<Image> getImages() {
-		return images;
-	}
-
-	public Set<Appareil> getAppareils() {
-		return appareils;
-	}
-
-	public TypePiece getTypePiece() {
-		return TypePiece;
-	}
-
-	public void setIdPiece(Long idPiece) {
-		this.idPiece = idPiece;
-	}
-
-	public void setPieceOrigine(Piece pieceOrigine) {
-		this.pieceOrigine = pieceOrigine;
-	}
-
-	public void setCategorie(Categorie categorie) {
-		this.categorie = categorie;
-	}
-
-	public void setReference(String reference) {
-		this.reference = reference;
-	}
-
-	public void setLibelle(String libelle) {
-		this.libelle = libelle;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public void setPrix(Double prix) {
-		this.prix = prix;
-	}
-
-	public void setQuantite(Integer quantite) {
-		this.quantite = quantite;
-	}
-
-	public void setPieceEquivalentes(Set<Piece> pieceEquivalentes) {
-		this.pieceEquivalentes = pieceEquivalentes;
-	}
-
-	public void setDocuments(Set<Document> documents) {
-		this.documents = documents;
-	}
-
-	public void setImages(Set<Image> images) {
-		this.images = images;
-	}
-
-	public void setAppareils(Set<Appareil> appareils) {
-		this.appareils = appareils;
-	}
-
-	public void setTypePiece(TypePiece typePiece) {
-		TypePiece = typePiece;
-	}
+	
 
 	@Override
 	public int hashCode() {
@@ -310,7 +209,7 @@ public class Piece implements Serializable {
 	@Override
 	public String toString() {
 		return "Piece [idPiece=" + idPiece + ", reference=" + reference + ", libelle=" + libelle + ", description="
-				+ description + ", prix=" + prix + ", quantite=" + quantite + ", TypePiece=" + TypePiece + "]";
+				+ description + ", prix=" + prix + ", quantite=" + quantite + ", TypePiece=" + typePiece + "]";
 	}
 
 	
